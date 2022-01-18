@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    FinTek | Users | Manage
+    FinTek | Data Transaksi
 @endsection
 
 @section('css')
@@ -9,15 +9,15 @@
         ul.pagination {margin-bottom:0;}
         .toast {border: 1px solid #007BFF;}
         .infoMessage {z-index:999;}
-        .top-right {top: 8px;right: 8px;}6
+        .top-right {top: 8px;right: 8px;}
     </style>
 @endsection
 
 @section('js')
     <script>
         function destroy(id) {
-            $(".idUser").text(id);
-            $(".destroy").attr("action", "{{ url('users') }}/"+id);
+            $(".idTransaksi").text(id);
+            $(".destroy").attr("action", "{{ url('transaksis') }}/"+id);
             $(".modal").modal({
                 show:true,
                 backdrop:"static",
@@ -36,13 +36,13 @@
                     <button class="close" data-dismiss="modal" aria-label="Close"><span>&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    Are you sure want to delete this data with ID #<i class="idUser"></i> ?
+                    Are you sure want to delete this data with ID #<i class="idTransaksi"></i> ?
                 </div>
                 <div class="modal-footer">
                     <form action="" method="post" class="destroy">
                         @csrf
                         @method("DELETE")
-                        <button  class="btn btn-sm btn-success">
+                        <button class="btn btn-sm btn-success">
                             <i class="fas fa-check"></i> Yes
                         </button>
                     </form>
@@ -59,12 +59,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row align-items-center">
-                            <div class="col-6 h4 font-weight-bold">User - Manage</div>
+                            <div class="col-6 h4 font-weight-bold">Data Transaksi</div>
                             <div class="col-6 text-right">
                                 <a href="{{ route('home') }}" class="btn btn-sm btn-danger">
                                     <i class="fas fa-backspace"></i> Back
                                 </a>
-                                <a href="{{ route('users.create') }}" class="btn btn-sm btn-success">
+                                <a href="{{ route('transaksis.create') }}" class="btn btn-sm btn-success">
                                     <i class="fas fa-plus-circle"></i> Create
                                 </a>
                             </div>
@@ -75,28 +75,27 @@
                             <thead class="thead-dark">
                                 <tr>
                                     <th class="text-center">No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Created</th>
+                                    <th>Pembeli</th>
+                                    <th>Nama Barang</th>
+                                    <th>Jumlah Barang</th>
+                                    <th>Total Harga</th>
                                     <th class="text-center" width="250">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (count($users) > 0)
-                                    @foreach ($users as $no => $item)
+                                @if (count($transaksi) > 0)
+                                    @foreach ($transaksi as $no => $item)
                                         <tr>
-                                            <td class="text-center">{{ $users->firstItem() + $no }}</td>
-                                            <td><img src="{{ asset('img/users/' . ($item->photo == '' ? 'noimage.jpg' : $item->photo)) }}" width="40" alt="{{ $item->name }}" class="rounded-circle">
-                                                {{ $item->name }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->role }}</td>
-                                            <td>{{ $item->created_at }}</td>
+                                            <td class="text-center">{{ $transaksi->firstItem() + $no }}</td>
+                                            <td>{{ $item->pembeli }}</td>
+                                            <td>{{ $item->nama_barang }}</td>
+                                            <td>{{ $item->jumlah_barang }}</td>
+                                            <td>@currency($item->total_harga)</td>
                                             <td class="text-center">
-                                                <a href="{{ route('users.show', $item->id) }}" class="btn btn-sm btn-primary">
+                                                <a href="{{ route('transaksis.show', $item->id) }}" class="btn btn-sm btn-primary">
                                                     <i class="fas fa-search"></i> Show
                                                 </a>
-                                                <a href="{{ route('users.edit', $item->id) }}" class="btn btn-sm btn-success">
+                                                <a href="{{ route('transaksis.edit', $item->id) }}" class="btn btn-sm btn-success">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
                                                 <button onclick="destroy({{ $item->id }})" class="btn btn-sm btn-danger">
@@ -113,9 +112,9 @@
                             </tbody>
                         </table>
                     </div>
-                    @if (count($users) > 15)
+                    @if (count($transaksi) > 15)
                         <div class="card-footer">
-                            {{ $users->links() }}
+                            {{ $transaksi->links() }}
                             
                         </div>
                     @endif

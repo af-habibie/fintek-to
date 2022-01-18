@@ -24,7 +24,7 @@ class AuthController extends Controller
             'password'  => $fields['password'],
         ]);
 
-        $token = $user->createToken('fintechtoken')->plainTextToken;
+        $token = $user->createToken('fintektoken')->plainTextToken;
 
         $response = [
             'user'  => $user,
@@ -51,11 +51,11 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $token = $user->createToken('fintechtoken')->plainTextToken;
+        // $token = $user->createToken('fintektoken')->plainTextToken;
 
         $response = [
             'user'  => $user,
-            'token' => $token,
+            // 'token' => $token,
         ];
 
         return response($response, 201);
@@ -63,7 +63,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        auth()->user()->tokens()->delete();
+        // auth()->user()->tokens()->delete();
 
         return [
             'message'   => 'Berhasil keluar dari akun'

@@ -64,6 +64,17 @@
                             @error('password') <code>{{ $message }}</code> @enderror
                         </div>
                         <div class="form-group">
+                                <label for="role">Role<span class="text-danger">*</span></label>
+                                <select class="form-control" name="role">
+                                        <option value="Admin">Admin</option>
+                                        <option value="User">User</option>
+                                        <option value="Bank Mini">Bank Mini</option>
+                                        <option value="Toko / Kantin">Toko / Kantin</option>
+                                        </option>
+                                </select>
+                                @error('role') <code>{{ $message }}</code> @enderror
+                            </div>
+                        <div class="form-group">
                                 <label for="photo" class="d-block">Photo<span class="text-danger">*</span></label>
                                 <div class="row mb-3">
                                     <div class="col-6"><img src="{{ asset('img/users/noimage.jpg') }}" width="200" class="rounded-circle" alt=""></div>

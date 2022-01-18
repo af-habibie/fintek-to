@@ -74,7 +74,6 @@
                                 @error('photo') <code>{{ $message }}</code> @enderror
                             </div>
                             <button type="submit" class="btn btn-success"><i class="fas fa-edit"></i> Edit</button>
-                            <input type="hidden" name="is_admin" value="0">
                         </form>
                     </div>
                 </div>

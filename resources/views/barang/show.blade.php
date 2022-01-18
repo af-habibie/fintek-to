@@ -37,7 +37,7 @@ FinTek | Barang | Details #{{ $barang->id }}
                                 </tr>
                                 <tr>
                                     <th>#HARGA PER UNIT</th>
-                                    <td>{{ $barang->harga_per_unit }}</td>
+                                    <td>@currency($barang->harga_per_unit)</td>
                                 </tr>
                                 <tr>
                                     <th>#CREATED</th>

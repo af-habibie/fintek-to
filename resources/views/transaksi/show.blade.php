@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-FinTek | User | Details #{{ $user->id }}
+FinTek | Transaksi | Details #{{ $transaksi->id }}
 @endsection
 
 @section('content')
@@ -11,9 +11,9 @@ FinTek | User | Details #{{ $user->id }}
                 <div class="card">
                     <div class="card-header">
                         <div class="row align-items-center">
-                            <div class="col-6 h4 font-weight-bold">User Detail | {{ $user->name }}</div>
+                            <div class="col-6 h4 font-weight-bold">Transaksi Detail | #{{ $transaksi->id }}</div>
                                 <div class="col-6 text-right">
-                                    <a href="{{ route('users.index') }}" class="btn btn-sm btn-danger">
+                                    <a href="{{ route('transaksis.index') }}" class="btn btn-sm btn-danger">
                                         <i class="fas fa-backspace"></i> Back
                                     </a>
                                 </div>
@@ -21,35 +21,36 @@ FinTek | User | Details #{{ $user->id }}
                         </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-4 d-flex justify-content-center align-items-center">
-                                <img src="{{ asset('img/users/' . ($user->photo == '' ? 'noimage.jpg' : $user->photo)) }}" width="250" alt="{{ $user->name }}" class="rounded-circle">
-                            </div>
-                            <div class="col-8">
+                            <div class="col-12 d-flex justify-content-center align-items-center">
                                 <table class="table table-bordered table-hover table-striped mb-0">
                             <tbody>
                                 <tr>
                                     <th>#ID</th>
-                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $transaksi->id }}</td>
                                 </tr>
                                 <tr>
-                                    <th>#NAME</th>
-                                    <td>{{ $user->name }}</td>
+                                    <th>#Pembeli</th>
+                                    <td>{{ $transaksi->pembeli }}</td>
                                 </tr>
                                 <tr>
-                                    <th>#EMAIL</th>
-                                    <td>{{ $user->email }}</td>
+                                    <th>#NAMA BARANG</th>
+                                    <td>{{ $transaksi->nama_barang }}</td>
                                 </tr>
                                 <tr>
-                                    <th>#ROLE</th>
-                                    <td>{{ $user->role }}</td>
+                                    <th>#JUMLAH BARANG</th>
+                                    <td>{{ $transaksi->jumlah_barang }}</td>
+                                </tr>
+                                <tr>
+                                    <th>#TOTAL HARGA</th>
+                                    <td>@currency($transaksi->total_harga)</td>
                                 </tr>
                                 <tr>
                                     <th>#CREATED</th>
-                                    <td>{{ $user->created_at }} ({{ $user->created_at->diffForHumans() }})</td>
+                                    <td>{{ $transaksi->created_at }} ({{ $transaksi->created_at->diffForHumans() }})</td>
                                 </tr>
                                 <tr>
                                     <th>#UPDATED</th>
-                                    <td>{{ $user->updated_at }} ({{ $user->updated_at->diffForHumans() }})</td>
+                                    <td>{{ $transaksi->updated_at }} ({{ $transaksi->updated_at->diffForHumans() }})</td>
                                 </tr>
                             </tbody>
                         </table>

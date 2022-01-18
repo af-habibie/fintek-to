@@ -31,6 +31,7 @@ class UserController extends Controller
                 'name' => 'required|min:3|max:25|regex:/^[a-zA-Z ]+$/u',
                 'email' => 'required|unique:users|email',
                 'password' => 'required|min:6|max:12',
+                'role' => 'required',
                 'photo' => 'required|max:2048|mimes:jpg,jpeg,png'
             ],
             [
@@ -45,6 +46,7 @@ class UserController extends Controller
         $users->name = $request->name;
         $users->email = $request->email;
         $users->password = $request->password;
+        $users->role = $request->role;
         $users->photo = $fileName;
         $users->save();
 
@@ -68,6 +70,7 @@ class UserController extends Controller
                 'name' => 'required|min:3|max:25|regex:/^[a-zA-Z ]+$/u',
                 'email' => 'required|email',
                 'password' => 'max:12',
+                // 'role' => 'required|role',
                 'photo' => 'max:2048|mimes:jpg,jpeg,png'
             ],
             [
@@ -92,6 +95,7 @@ class UserController extends Controller
 
         $data->name = $request->name;
         $data->email = $request->email;
+        // $data->role = $request->role;
 
         if (!empty($request->password)) {
             $data->password = $request->password;
